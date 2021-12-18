@@ -24,3 +24,12 @@ module Tuples =
     let Point x y z = Tuple.create x y z 1.0
     
     let Vector x y z = Tuple.create x y z 0.0
+
+    let Color = Point 
+
+    module Colors =
+      let black = Color 0.0 0.0 0.0
+      let white = Color 1.0 1.0 1.0
+      let red = Color 1.0 0.0 0.0
+      let green = Color 0.0 1.0 0.0
+      let blue = Color 0.0 0.0 1.0
