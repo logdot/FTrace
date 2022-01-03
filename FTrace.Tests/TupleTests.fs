@@ -5,7 +5,7 @@ open Xunit
 open FsUnit.Xunit
 open FTrace.Types.Tuples
 
-let EPSILON = 0.0000001
+open TestHelpers
 
 module Arithmetic = 
     [<Fact>]
@@ -101,13 +101,13 @@ module Magnitude =
     let ``Magnitude of a 1 2 3 4 tuple``() =
         let a = Tuple.create 1. 2. 3. 4.
         let b = Tuple.magnitude a
-        abs (b - 5.477225575) < EPSILON |> should equal true
+        b .=. 5.477225575 |> should equal true
 
     [<Fact>]
     let ``Magnitude of a -1 -2 -3 -4 tuple``() =
         let a = Tuple.create -1. -2. -3. -4.
         let b = Tuple.magnitude a
-        abs (b - 5.477225575) < EPSILON |> should equal true
+        b .=. 5.477225575 |> should equal true
 
 module Normalize =
     [<Fact>]
@@ -124,7 +124,7 @@ module Normalize =
         let a = Tuple.create 1. 3. 4. -2.
         let b = Tuple.normalize a
         let c = Tuple.magnitude b
-        abs (c - 1.0) < 0.00001 |> should equal true
+        c .=. 1.0 |> should equal true
 
 
 module Dot =

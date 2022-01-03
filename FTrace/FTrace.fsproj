@@ -5,7 +5,9 @@
     <WarnOn>3390;$(WarnOn)</WarnOn>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Constants.fs" />
     <Compile Include="Tuples.fs" />
+    <Compile Include="Matrix.fs" />
     <Compile Include="Canvas.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>

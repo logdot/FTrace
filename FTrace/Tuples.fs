@@ -1,11 +1,19 @@
 namespace FTrace.Types
 
+open FTrace.Constants
+
 module Tuples = 
     type Tuple =
         { X:float
           Y:float
           Z:float
           W:float }
+
+        static member (.=)(a, b) =
+            abs (a.X - b.X) < Epsilon
+            && abs (a.Y - b.Y) < Epsilon
+            && abs (a.Z - b.Z) < Epsilon
+            && abs (a.W - b.W) < Epsilon 
 
         static member (+) (a:Tuple, b:Tuple) = Tuple.create (a.X + b.X) (a.Y + b.Y) (a.Z + b.Z) (a.W + b.W)
         static member (-) (a:Tuple, b:Tuple) = Tuple.create (a.X - b.X) (a.Y - b.Y) (a.Z - b.Z) (a.W - b.W)
@@ -20,7 +28,7 @@ module Tuples =
         static member normalize (a:Tuple) = a / Tuple.magnitude (a)
     
         static member create (x:float) (y:float) (z:float) (w:float) = { X=x; Y=y; Z=z; W=w }
-
+        
     let Point x y z = Tuple.create x y z 1.0
     
     let Vector x y z = Tuple.create x y z 0.0
