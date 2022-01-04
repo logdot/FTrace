@@ -83,7 +83,7 @@ module Matrix =
                 |> Array.sum
 
         member x.invertible =
-            x.determinant <> 0.
+            abs x.determinant > Epsilon
 
         member x.inverse =
             if x.invertible = false then

@@ -320,19 +320,19 @@ type MatrixGenerator =
         |> Gen.listOfLength 4
         |> Arb.fromGen
 
-[<Property(Arbitrary=[|typeof<MatrixGenerator>|], Verbose=true)>]
+[<Property(Arbitrary=[|typeof<MatrixGenerator>|])>]
 let ``PROPERTY: Multiplying a matrix by it's inverse is identity``(input:list<list<float>>) =
     let a = Matrix.create input
 
     a.invertible ==> (lazy(identity .= a * a.inverse))
 
-[<Property(Arbitrary=[|typeof<MatrixGenerator>|], Verbose=true)>]
+[<Property(Arbitrary=[|typeof<MatrixGenerator>|])>]
 let ``PROPERTY: Inverse of the transpose is equal to the transpose of the inverse``(input:list<list<float>>) =
     let a = Matrix.create input
 
     a.invertible ==> lazy(a.inverse.transpose .= a.transpose.inverse)
 
-[<Property(Arbitrary=[|typeof<MatrixGenerator>|], Verbose=true)>]
+[<Property(Arbitrary=[|typeof<MatrixGenerator>|])>]
 let ``PROPERTY: Multiplying a product by the inverse of one of the elements gives the other element``(a:list<list<float>>, b:list<list<float>>) =
     let a = Matrix.create a
     let b = Matrix.create b
