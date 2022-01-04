@@ -18,7 +18,7 @@ module Matrix =
                 { Dimension=dim
                   Elements=array2D rows }
             else
-                failwith "Invalid matrix dimensions"
+                invalidArg "rows" "Invalid matrix dimensions"
 
         static member (.=)(m1, m2:Matrix) =
             let allWithingEpsilon =

@@ -311,19 +311,32 @@ let ``Calculating the inverse of a third matrix``() =
 
     a.inverse .= result |> should equal true
 
-(*
-[<Property(StartSize=2)>]
-let ``PROPERTY: Calculating the inverse of a matrix multiplied by its inverse should be the identity matrix``(input:float[,]) =
-    let inp = [
-        let height = input.GetLength 0
-        for row in 0..height-1 do
-            yield input.[row,*] |> List.ofArray
-    ]
+type MatrixGenerator =
+    static member matrix() =
+        let size = Gen.choose(2, 4)
 
-    let a = Matrix.create inp
+        Gen.elements [-100.0..0.01..100.0]
+        |> Gen.listOfLength 4
+        |> Gen.listOfLength 4
+        |> Arb.fromGen
 
-    a.invertible ==>
-        let a' = a.inverse
-        let c = a * a'
-        c = identity
-*)
+[<Property(Arbitrary=[|typeof<MatrixGenerator>|], Verbose=true)>]
+let ``PROPERTY: Multiplying a matrix by it's inverse is identity``(input:list<list<float>>) =
+    let a = Matrix.create input
+
+    a.invertible ==> (lazy(identity .= a * a.inverse))
+
+[<Property(Arbitrary=[|typeof<MatrixGenerator>|], Verbose=true)>]
+let ``PROPERTY: Inverse of the transpose is equal to the transpose of the inverse``(input:list<list<float>>) =
+    let a = Matrix.create input
+
+    a.invertible ==> lazy(a.inverse.transpose .= a.transpose.inverse)
+
+[<Property(Arbitrary=[|typeof<MatrixGenerator>|], Verbose=true)>]
+let ``PROPERTY: Multiplying a product by the inverse of one of the elements gives the other element``(a:list<list<float>>, b:list<list<float>>) =
+    let a = Matrix.create a
+    let b = Matrix.create b
+
+    let c = a * b
+
+    b.invertible ==> lazy(c * b.inverse .= a)
