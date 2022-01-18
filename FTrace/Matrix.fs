@@ -134,3 +134,52 @@ module Matrix =
         [0.; 1.; 0.; 0.]
         [0.; 0.; 1.; 0.]
         [0.; 0.; 0.; 1.] ]
+
+    let translate x y z = Matrix.create [
+        [ 1.; 0.; 0.; x ]
+        [ 0.; 1.; 0.; y ]
+        [ 0.; 0.; 1.; z ]
+        [ 0.; 0.; 0.; 1. ] ]
+
+    let scale x y z = Matrix.create [
+        [ x; 0.; 0.; 0. ]
+        [ 0.; y; 0.; 0. ]
+        [ 0.; 0.; z; 0. ]
+        [ 0.; 0.; 0.; 1. ] ]
+
+    let rotateX r =
+        let cosr = Math.Cos r
+        let sinr = Math.Sin r
+
+        Matrix.create [
+            [ 1.; 0.; 0.; 0. ]
+            [ 0.; cosr; -sinr; 0. ]
+            [ 0.; sinr; cosr; 0. ]
+            [ 0.; 0.; 0.; 1. ] ]
+
+    let rotateY r =
+        let cosr = Math.Cos r
+        let sinr = Math.Sin r
+
+        Matrix.create [
+            [ cosr; 0.; sinr; 0. ]
+            [ 0.; 1.; 0.; 0. ]
+            [ -sinr; 0.; cosr; 0. ]
+            [ 0.; 0.; 0.; 1. ] ]
+
+    let rotateZ r =
+        let cosr = Math.Cos r
+        let sinr = Math.Sin r
+
+        Matrix.create [
+            [ cosr; -sinr; 0.; 0. ]
+            [ sinr; cosr; 0.; 0. ]
+            [ 0.; 0.; 1.; 0. ]
+            [ 0.; 0.; 0.; 1. ] ]
+
+    let shear xy xz yx yz zx zy =
+        Matrix.create [
+            [ 1.; xy; xz; 0. ]
+            [ yx; 1.; yz; 0. ]
+            [ zx; zy; 1.; 0. ]
+            [ 0.; 0.; 0.; 1. ] ]

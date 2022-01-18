@@ -317,6 +317,14 @@ module Invertibility =
 
         a.inverse .= result |> should equal true
 
+module Rotation =
+    [<Fact>]
+    let ``Rotating a point a quarter circle on the Y axis`` =
+        let p = Point 0. 1. 0.
+        let quarter = rotateY (PI/2.)
+
+        quarter * p = Point 0. 0. 1. |> should equal true
+
 type MatrixGenerator =
     static member matrix() =
         let size = Gen.choose(2, 4)
