@@ -7,7 +7,10 @@
   <ItemGroup>
     <Compile Include="Constants.fs" />
     <Compile Include="Tuples.fs" />
+    <Compile Include="Intersection.fs" />
     <Compile Include="Matrix.fs" />
+    <Compile Include="Ray.fs" />
+    <Compile Include="Sphere.fs" />
     <Compile Include="Canvas.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
