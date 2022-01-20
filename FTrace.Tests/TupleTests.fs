@@ -143,3 +143,20 @@ module Dot =
         let ba = b .*. a
         ab |> should equal (Tuple.create -1. 2. -1. 0.)
         ba |> should equal (Tuple.create 1. -2. 1. 0.)
+
+module Reflection =
+    [<Fact>]
+    let ``Reflecting a vector approaching at 45deg``() =
+        let v = Vector 1. -1. 0.
+        let n = Vector 0. 1. 0.
+        let r = reflect v n
+
+        r |> should equal (Vector 1. 1. 0.)
+
+    [<Fact>]
+    let ``Reflecting a vector of a slanted surface``() =
+        let v = Vector 0. -1. 0.
+        let n = Vector (sqrt 2./2.) (sqrt 2./2.) 0.
+        let r = reflect v n
+
+        r .= (Vector 1. 0. 0.) |> should equal true

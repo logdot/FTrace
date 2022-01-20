@@ -4,11 +4,13 @@ open FTrace.Types.Tuples
 open FTrace.Types.Intersection
 open FTrace.Types.Ray
 open FTrace.Types.Matrix
+open FTrace.Types.Material
 
 module Sphere =
     type Sphere =
         { 
             Transform:Matrix
+            Material:Material
         }
 
         member x.intersect (ray:Ray) =
@@ -33,11 +35,18 @@ module Sphere =
                 [i1; i2]
             
         member x.transform (m:Matrix) = { x with Transform=m}
+        member x.normal (worldP:Tuple) =
+            let objectP = x.Transform.inverse * worldP
+            let objectN = objectP - Point 0. 0. 0.
+            let worldN = x.Transform.inverse.transpose * objectN
+            Tuple.normalize { worldN with W=0. }
+            
 
-    let create transform =
+    let create transform material =
         {
             Transform=transform
+            Material=material
         }
 
     let Unit =
-        create identity
+        create identity Material.Default

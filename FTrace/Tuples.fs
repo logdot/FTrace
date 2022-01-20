@@ -19,6 +19,7 @@ module Tuples =
         static member (-) (a:Tuple, b:Tuple) = Tuple.create (a.X - b.X) (a.Y - b.Y) (a.Z - b.Z) (a.W - b.W)
         static member (~-) (a:Tuple) = Tuple.create (-a.X) (-a.Y) (-a.Z) (-a.W)
         static member (*) (a:Tuple, b:float) = Tuple.create (a.X * b) (a.Y * b) (a.Z * b) (a.W * b)
+        static member (*) (a:Tuple, b:Tuple) = Tuple.create (a.X * b.X) (a.Y * b.Y) (a.Z * b.Z) (a.W * b.W)
         static member (/) (a:Tuple, b:float) = Tuple.create (a.X / b) (a.Y / b) (a.Z / b) (a.W / b)
 
         static member (<*>) (a:Tuple, b:Tuple) = a.X*b.X + a.Y*b.Y + a.Z*b.Z + a.W*b.W
@@ -32,6 +33,9 @@ module Tuples =
     let Point x y z = Tuple.create x y z 1.0
     
     let Vector x y z = Tuple.create x y z 0.0
+
+    let reflect (inp:Tuple) (normal:Tuple) =
+        inp - ((normal * 2.) * (inp <*> normal))
 
     let Color = Point 
 

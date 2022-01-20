@@ -11,6 +11,7 @@ open FTrace.Types.Tuples
 open FTrace.Types.Shapes
 open FTrace.Types.Intersection
 open FTrace.Types.Matrix
+open FTrace.Types.Material
 open TestHelpers
 
 [<Fact>]
@@ -200,7 +201,7 @@ let ``Intersecting a scaled sphere with a ray``() =
     let origin = Point 0. 0. -5.
     let direction = Vector 0. 0. 1.
     let r = Ray.create origin direction
-    let s = Sphere.create (scale 2. 2. 2.)
+    let s = Sphere.create (scale 2. 2. 2.) Material.Default
     
     let xs = s.intersect r
     xs.Length |> should equal 2
@@ -212,7 +213,7 @@ let ``Intersecting a translated sphere with a ray``() =
     let origin = Point 0. 0. -5.
     let direction = Vector 0. 0. 1.
     let r = Ray.create origin direction
-    let s = Sphere.create (translate 5. 0. 0.)
+    let s = Sphere.create (translate 5. 0. 0.) Material.Default
     
     let xs = s.intersect r
     xs.Length |> should equal 0
