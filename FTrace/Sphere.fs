@@ -2,8 +2,6 @@ namespace FTrace.Types.Shapes
 
 open FTrace.Types
 open FTrace.Types.Tuples
-open FTrace.Types.Intersection
-open FTrace.Types.Matrix
 
 type Sphere =
     { 

@@ -34,11 +34,10 @@ type Tuplet =
 module Tuples = 
     let Point x y z = Tuplet.create x y z 1.0
     let Vector x y z = Tuplet.create x y z 0.0
+    let Color = Point 
 
     let reflect (inp:Tuplet) (normal:Tuplet) =
         inp - ((normal * 2.) * (inp <*> normal))
-
-    let Color = Point 
 
     module Colors =
       let black = Color 0.0 0.0 0.0

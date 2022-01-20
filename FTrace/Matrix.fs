@@ -2,7 +2,6 @@ namespace FTrace.Types
 
 open System
 open FTrace.Constants
-//open Tuples
 
 type Matrix =
     {
@@ -126,8 +125,8 @@ type Matrix =
         else
             invalidArg "rows" "Invalid matrix dimensions"
 
-
-module Matrix =
+[<AutoOpen>]
+module Translations =
     let identity = Matrix.create [
         [1.; 0.; 0.; 0.]
         [0.; 1.; 0.; 0.]
@@ -182,3 +181,22 @@ module Matrix =
             [ yx; 1.; yz; 0. ]
             [ zx; zy; 1.; 0. ]
             [ 0.; 0.; 0.; 1. ] ]
+
+module Matrix =
+    let translating x y z matrix =
+        translate x y z * matrix
+    
+    let scaling x y z matrix =
+        scale x y z * matrix
+
+    let rotatingX r matrix =
+        rotateX r * matrix
+
+    let rotatingY r matrix =
+        rotateY r * matrix
+
+    let rotatingZ r matrix =
+        rotateZ r * matrix
+
+    let shearing xy xz yx yz zx zy matrix =
+        shear xy xz yx yz zx zy * matrix

@@ -7,7 +7,6 @@ open FsCheck.Xunit
 
 open FTrace.Constants
 open FTrace.Types
-open FTrace.Types.Matrix
 open FTrace.Types.Tuples
 open TestHelpers
 

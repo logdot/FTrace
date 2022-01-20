@@ -1,8 +1,6 @@
 namespace FTrace.Types
 
 open FTrace.Constants
-open Tuples
-open Matrix
 
 type Ray = 
     {
