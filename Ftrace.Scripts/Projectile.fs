@@ -1,16 +1,17 @@
 module Projectile
 
 open System.IO
+open FTrace.Types
 open FTrace.Types.Tuples
 open FTrace.Types.Canvas
 
 type Projectile =
-    { position: Tuple 
-      velocity: Tuple }
+    { position: Tuplet 
+      velocity: Tuplet }
 
 type Environment =
-    { gravity: Tuple
-      wind: Tuple }
+    { gravity: Tuplet
+      wind: Tuplet }
 
 let tick env p = {
     position = p.position + p.velocity
@@ -18,7 +19,7 @@ let tick env p = {
 
 let mutable projectile = {
     position = Point 0. 1. 0.
-    velocity = (Vector 1. 1.8 0. |> Tuple.normalize) * 5. }
+    velocity = (Vector 1. 1.8 0. |> Tuplet.normalize) * 5. }
 
 let env = {
     gravity = Vector 0. -0.1 0.

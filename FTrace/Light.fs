@@ -2,20 +2,19 @@ namespace FTrace.Types
 
 open FTrace.Constants
 open Tuples
-open Material
+
+type Light = 
+    {
+        Position:Tuplet
+        Intensity:Tuplet 
+    }
+
+    static member create position intensity = { Position=position; Intensity=intensity }
 
 module Light =
-    type Light = 
-        {
-            Position:Tuple
-            Intensity:Tuple 
-        }
-
-        static member create position intensity = { Position=position; Intensity=intensity }
-
-    let lighting (material:Material) (light:Light) (point:Tuple) (eyev:Tuple) (normalv:Tuple) =
+    let lighting (material:Material) (light:Light) (point:Tuplet) (eyev:Tuplet) (normalv:Tuplet) =
         let effectiveColor = material.Color * light.Intensity
-        let lightv = Tuple.normalize (light.Position - point)
+        let lightv = Tuplet.normalize (light.Position - point)
         let ambient = effectiveColor * material.Ambient
 
         let lightDotNormal = lightv <*> normalv

@@ -6,6 +6,7 @@ open FsCheck
 open FsCheck.Xunit
 
 open FTrace.Constants
+open FTrace.Types
 open FTrace.Types.Matrix
 open FTrace.Types.Tuples
 open TestHelpers
@@ -114,9 +115,9 @@ module Multiplication =
             [8.; 6.; 4.; 1.]
             [0.; 0.; 0.; 1.] ]
 
-        let tuple = Tuple.create 1. 2. 3. 1.
+        let tuple = Tuplet.create 1. 2. 3. 1.
 
-        let result = Tuple.create 18. 24. 33. 1.
+        let result = Tuplet.create 18. 24. 33. 1.
 
         matrix * tuple .= result |> should equal true
 

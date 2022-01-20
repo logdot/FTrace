@@ -1,14 +1,13 @@
 module Sphere
 
 open System.IO
+open FTrace.Types
 open FTrace.Types.Canvas
 open FTrace.Types.Tuples
-open FTrace.Types.Ray
 open FTrace.Types.Shapes
 open FTrace.Types.Intersection
 open FTrace.Types.Light
 open FTrace.Types.Matrix
-open FTrace.Types.Material
 open FTrace.Constants
 
 let width = 500
@@ -40,7 +39,7 @@ let run =
 
             let position = Point worldX -worldY wallZ
 
-            let ray = Ray.create rayOrigin (Tuple.normalize (position - rayOrigin))
+            let ray = Ray.create rayOrigin (Tuplet.normalize (position - rayOrigin))
             let xs = shape.intersect ray
 
             match hit(xs) with

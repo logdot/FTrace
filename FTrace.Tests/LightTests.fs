@@ -3,9 +3,9 @@ module LightTests
 open System
 open Xunit
 open FsUnit.Xunit
+open FTrace.Types
 open FTrace.Types.Tuples
 open FTrace.Types.Light
-open FTrace.Types.Material
 
 [<Fact>]
 let ``A point light has a position and a intensity``() =
@@ -26,7 +26,7 @@ let ``Lighting with the eye between the light and the surface``() =
     let normalv = Vector 0. 0. -1.
     let light = Light.create (Point 0. 0. -10.) (Color 1. 1. 1.)
     let result = lighting m light position eyev normalv
-    result |> should equal (Tuple.create 1.9 1.9 1.9 1.9)
+    result |> should equal (Tuplet.create 1.9 1.9 1.9 1.9)
 
 [<Fact>]
 let ``Lighting with the eye between the light and the surface 45 degree offset``() =
@@ -48,7 +48,7 @@ let ``Lighting with the eye opposite surface light offset 45 degrees``() =
     let normalv = Vector 0. 0. -1.
     let light = Light.create (Point 0. 10. -10.) (Color 1. 1. 1.)
     let result = lighting m light position eyev normalv
-    result .= (Tuple.create 0.7364 0.7364 0.7364 0.7364) |> should equal true
+    result .= (Tuplet.create 0.7364 0.7364 0.7364 0.7364) |> should equal true
 
 [<Fact>]
 let ``Lighting with the eye in the path of the reflection vector``() =
@@ -59,7 +59,7 @@ let ``Lighting with the eye in the path of the reflection vector``() =
     let normalv = Vector 0. 0. -1.
     let light = Light.create (Point 0. 10. -10.) (Color 1. 1. 1.)
     let result = lighting m light position eyev normalv
-    result .= (Tuple.create 1.63639 1.63639 1.63639 1.63639) |> should equal true
+    result .= (Tuplet.create 1.63639 1.63639 1.63639 1.63639) |> should equal true
 
 [<Fact>]
 let ``Lighting with the light behind the surface``() =
@@ -70,4 +70,4 @@ let ``Lighting with the light behind the surface``() =
     let normalv = Vector 0. 0. -1.
     let light = Light.create (Point 0. 0. 10.) (Color 1. 1. 1.)
     let result = lighting m light position eyev normalv
-    result .= (Tuple.create 0.1 0.1 0.1 0.1) |> should equal true
+    result .= (Tuplet.create 0.1 0.1 0.1 0.1) |> should equal true

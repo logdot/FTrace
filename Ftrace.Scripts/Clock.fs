@@ -1,6 +1,7 @@
 module Clock
 
 open System.IO
+open FTrace.Types
 open FTrace.Types.Canvas
 open FTrace.Types.Tuples
 open FTrace.Types.Matrix

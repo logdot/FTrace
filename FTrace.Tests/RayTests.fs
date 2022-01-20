@@ -6,12 +6,11 @@ open FsCheck
 open FsCheck.Xunit
 
 open FTrace.Constants
-open FTrace.Types.Ray
+open FTrace.Types
 open FTrace.Types.Tuples
 open FTrace.Types.Shapes
 open FTrace.Types.Intersection
 open FTrace.Types.Matrix
-open FTrace.Types.Material
 open TestHelpers
 
 [<Fact>]
@@ -121,7 +120,7 @@ let ``Aggregating intersections``() =
     let i1 = Intersection.create s 1.
     let i2 = Intersection.create s 2.
 
-    let xs = intersections [i1] i2
+    let xs = [i1; i2]
 
     xs.Length |> should equal 2
     xs.[0].T |> should equal 1.
@@ -132,7 +131,7 @@ let ``The hit, when all intersections have positive t``() =
     let s = Sphere.Unit
     let i1 = Intersection.create s 1.
     let i2 = Intersection.create s 2.
-    let xs = intersections [i2] i1
+    let xs = [i2; i1]
 
     let i = hit xs
     i.Value |> should equal i1
@@ -142,7 +141,7 @@ let ``The hit, when some intersections have negative t``() =
     let s = Sphere.Unit
     let i1 = Intersection.create s -1.
     let i2 = Intersection.create s 1.
-    let xs = intersections [i1] i2
+    let xs = [i1; i2]
 
     let i = hit xs
     i.Value |> should equal i2
@@ -152,7 +151,7 @@ let ``The hit, when all intersections have negative t``() =
     let s = Sphere.Unit
     let i1 = Intersection.create s -2.
     let i2 = Intersection.create s -1.
-    let xs = intersections [i1] i2
+    let xs = [i1; i2]
 
     let i = hit xs
     i.IsNone |> should equal true

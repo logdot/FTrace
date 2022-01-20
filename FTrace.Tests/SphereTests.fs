@@ -6,10 +6,10 @@ open FsCheck
 open FsCheck.Xunit
 
 open FTrace.Constants
+open FTrace.Types
 open FTrace.Types.Tuples
 open FTrace.Types.Shapes
 open FTrace.Types.Matrix
-open FTrace.Types.Material
 open TestHelpers
 
 [<Fact>]

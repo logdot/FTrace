@@ -4,17 +4,21 @@ open System
 open System.Text.RegularExpressions
 open Tuples
 
+type Canvas =
+    {
+        Width:int
+        Height:int
+        Pixels:Tuplet[,]
+    }
+
+    static member create width height = 
+        {
+            Width=width
+            Height=height
+            Pixels=Array2D.create height width Colors.black
+        }
+
 module Canvas =
-    type Canvas =
-        { Width:int
-          Height:int
-          Pixels:Tuple[,] }
-
-        static member create width height = 
-            { Width=width
-              Height=height
-              Pixels=Array2D.create height width Colors.black }
-
     let writePixel canvas x y color = Array2D.set canvas.Pixels y x color 
     let pixelAt canvas x y = Array2D.get canvas.Pixels y x
 
@@ -23,7 +27,7 @@ module Canvas =
             let rgbVal = 255.0 * f |> round
             Math.Clamp(int rgbVal, 0, 255) |> int
 
-        let colorToRGB (c:Tuple) =
+        let colorToRGB (c:Tuplet) =
             sprintf "%d %d %d" (clamp c.X) (clamp c.Y) (clamp c.Z)
 
         let generateRows (rgbs:seq<string>) =

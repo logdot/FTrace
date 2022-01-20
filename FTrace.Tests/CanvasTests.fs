@@ -3,6 +3,7 @@ module CanvasTests
 open Xunit
 open FsUnit.Xunit
 
+open FTrace.Types
 open FTrace.Types.Canvas
 open FTrace.Types.Tuples
 open TestHelpers
