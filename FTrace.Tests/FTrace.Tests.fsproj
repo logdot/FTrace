@@ -8,6 +8,7 @@
     <Compile Include="TestHelpers.fs" />
     <Compile Include="LightTests.fs" />
     <Compile Include="RayTests.fs" />
+    <Compile Include="WorldTests.fs" />
     <Compile Include="SphereTests.fs" />
     <Compile Include="MatrixTests.fs" />
     <Compile Include="TupleTests.fs" />

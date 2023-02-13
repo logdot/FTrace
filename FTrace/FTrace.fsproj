@@ -12,7 +12,10 @@
     <Compile Include="Intersection.fs" />
     <Compile Include="Matrix.fs" />
     <Compile Include="Ray.fs" />
+    <Compile Include="Intersectable.fs" />
     <Compile Include="Sphere.fs" />
+    <Compile Include="World.fs" />
+    <Compile Include="World.fs" />
     <Compile Include="Canvas.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
