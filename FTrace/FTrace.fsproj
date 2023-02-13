@@ -6,17 +6,16 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Constants.fs" />
-    <Compile Include="Tuples.fs" />
-    <Compile Include="Material.fs" />
-    <Compile Include="Light.fs" />
-    <Compile Include="Intersection.fs" />
-    <Compile Include="Matrix.fs" />
-    <Compile Include="Ray.fs" />
-    <Compile Include="Intersectable.fs" />
-    <Compile Include="Sphere.fs" />
-    <Compile Include="World.fs" />
-    <Compile Include="World.fs" />
-    <Compile Include="Canvas.fs" />
+    <Compile Include="Types/Tuples.fs" />
+    <Compile Include="Types/Material.fs" />
+    <Compile Include="Types/Light.fs" />
+    <Compile Include="Types/Intersection.fs" />
+    <Compile Include="Types/Matrix.fs" />
+    <Compile Include="Types/Ray.fs" />
+    <Compile Include="Types/Intersectable.fs" />
+    <Compile Include="Types/Shapes/Sphere.fs" />
+    <Compile Include="Types/World.fs" />
+    <Compile Include="Types/Canvas.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 </Project>
